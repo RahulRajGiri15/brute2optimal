@@ -20,7 +20,8 @@ public:
                 parity = currpar;
             }
         }
-        int maxx = max(cntE,cntO);
-        return max(maxx , alternating);
+        // int maxx = max(cntE,cntO);
+        // return max(maxx , alternating);
+        return max({cntE,cntO,alternating});
     }
 };
