@@ -45,25 +45,49 @@
 
 ///////////// optimal approach
 
+// class Solution {
+// public:
+//     int majorityElement(vector<int>& nums) {
+//         int n = nums.size();
+//         int cnt=0;
+//         int x = nums[0];
+//         for(int i =0;i<n;i++){
+//             if(x == nums[i]){
+//                 cnt++;
+//             }
+//             if(x != nums[i]){
+//                 cnt--;
+//             }
+//             if(cnt == 0){
+//                 x = nums[i];
+//                 cnt++;
+//             }
+//         }
+//         return x ; 
+//     }
+// };
+
+
+//////////////////
+
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        int cnt=0;
-        int x = nums[0];
-        for(int i =0;i<n;i++){
-            if(x == nums[i]){
-                cnt++;
+        int count = 0;
+        int candidate = 0;
+
+        for(int num : nums){
+            if(count == 0){
+                candidate = num;
             }
-            if(x != nums[i]){
-                cnt--;
+            if( candidate == num){
+                count++;
             }
-            if(cnt == 0){
-                x = nums[i];
-                cnt++;
+            else{
+                count--;
             }
         }
-        return x ; 
+        return candidate;
     }
 };
 
