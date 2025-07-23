@@ -27,29 +27,55 @@
 //     }
 // };
 
-/////////////
+///////////// better approach 
 
+
+// class Solution {
+// public:
+//     int longestConsecutive(vector<int>& nums) {
+//         int n = nums.size();
+//         if(n==0) return 0;
+//         int lastsmaller = INT_MIN;
+//         int cnt =1;
+//         sort(nums.begin(),nums.end());
+//         int maxcnt =0;
+//         for(int i=0;i<n;i++){
+//             if(nums[i]-1 == lastsmaller){
+//                 cnt++;
+//                 lastsmaller = nums[i];
+//             }
+//             else if(nums[i] != lastsmaller){
+//                 cnt =1;
+//                 lastsmaller = nums[i];
+//             }
+//             maxcnt = max(maxcnt,cnt);
+//         }
+//        return maxcnt;
+//     }
+// };
+
+///////////
 
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        int n = nums.size();
-        if(n==0) return 0;
-        int lastsmaller = INT_MIN;
-        int cnt =1;
-        sort(nums.begin(),nums.end());
-        int maxcnt =0;
-        for(int i=0;i<n;i++){
-            if(nums[i]-1 == lastsmaller){
-                cnt++;
-                lastsmaller = nums[i];
+        if(nums.empty()) return 0;
+        unordered_set<int>st;
+       for(int num : nums){
+            st.insert(num);
+       } 
+       int longest = 0;
+        for(auto it:st){
+            if(st.find(it-1) == st.end()){
+                int cnt =1;
+                int x = it;
+                while(st.find(x+1) != st.end()){
+                    cnt++;
+                    x = x+1;
+                }
+                longest = max(longest,cnt);
             }
-            else if(nums[i] != lastsmaller){
-                cnt =1;
-                lastsmaller = nums[i];
-            }
-            maxcnt = max(maxcnt,cnt);
         }
-       return maxcnt;
+       return longest;
     }
 };
