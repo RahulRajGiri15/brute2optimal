@@ -54,7 +54,7 @@
 //     }
 // };
 
-///////////
+/////////// most optimal solution
 
 class Solution {
 public:
@@ -79,3 +79,6 @@ public:
        return longest;
     }
 };
+
+/////t-o(n)+o(n) == o(n)
+/////s-o(n)
