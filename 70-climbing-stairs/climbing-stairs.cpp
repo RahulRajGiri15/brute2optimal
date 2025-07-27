@@ -37,24 +37,49 @@
 //     }
 // };
 
-////////////
+////////////bottom - up approach -- tabulataion method dp 
+
+// class Solution {
+// public:
+//     int solve(int n , vector<int>&dp){
+//         if(n < 0) return 0;
+//         if(n <=2) return n;
+//         dp[0] =0;
+//         dp[1] =1;
+//         dp[2] =2; /////---- can go with 2 ways {1,1} , {2}
+        
+//         //////
+//         for(int i=3;i<=n;i++){
+//             dp[i] = dp[i-1] + dp[i-2];
+//         }
+//         return dp[n];
+//     }
+//     int climbStairs(int n) {
+//         vector<int> dp(n+1);
+//         return solve(n , dp);
+
+//     }
+// };
+
+////////////more optimizing -- why don't we take 3 varibles instead 
+///////// as here at a time we only require previous 2 values only 
 
 class Solution {
 public:
     int solve(int n , vector<int>&dp){
         if(n < 0) return 0;
-        ///////
         if(n <=2) return n;
-        dp[0] =0;
-        dp[1] =1;
-        dp[2] =2; 
-        /////---- can go with 2 ways {1,1} , {2}
-       
+
+        int a = 1;
+        int b = 2;
+        int c = 3; /////---- can go with 2 ways {1,1} , {2}
         //////
         for(int i=3;i<=n;i++){
-            dp[i] = dp[i-1] + dp[i-2];
+            c = a + b;
+            a = b;
+            b = c;
         }
-        return dp[n];
+        return c;
     }
     int climbStairs(int n) {
         vector<int> dp(n+1);
