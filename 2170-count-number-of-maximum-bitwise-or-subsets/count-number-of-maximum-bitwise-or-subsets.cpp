@@ -1,3 +1,5 @@
+///////recursion 
+
 // class Solution {
 // public:
 //     int countsubsets(int idx,vector<int>&nums,int maxor,int curror){
@@ -21,6 +23,9 @@
 //         return countsubsets(0,nums,maxor,curror);
 //     }
 // };
+
+///t--o(2^n)
+///s--o(n)--recursion call stack || auxiollary space = o(1)
 
 //////////////lets memoization it 
 
@@ -50,3 +55,6 @@ public:
         return countsubsets(0,nums,maxor,curror,dp);
     }
 };
+
+////////t--o(n+1 * maxor+1)-- o(n*maxor)
+////////s--o(n*maxor) +o(n) (recursion call stack)---> o(n*maxor)
