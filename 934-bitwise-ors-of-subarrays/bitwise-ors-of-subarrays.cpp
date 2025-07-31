@@ -1,16 +1,25 @@
+////Recursive Approach ---Brute Approach
+
 // class Solution {
 // public:
-//     int totalcount(vector<int>& arr){
-        
-//         ////
-//         int pick = totalcount(arr,idx+1,numor |num[idx],n);
-//         int notpick = totalcount(arr,idx,numor,n);
+//     void totalcount(vector<int>& arr,int idx,int curor,unordered_set<int>& st){
+//         if(idx == arr.size()) return ;
+//         curor |= arr[idx];
+//         st.insert(curor);
+//         totalcount(arr,idx+1,curor,st);
 //     }
 //     int subarrayBitwiseORs(vector<int>& arr) {
 //         int n = arr.size();
-//         int result = totalcount(arr,0,n);
+//         unordered_set<int>st;
+//         for(int i=0;i<arr.size();i++){
+//             totalcount(arr,i,0,st);
+//         }
+//         return st.size();
 //     }
 // };
+
+////t--o(n^2)
+////s---o(n+m)-- n - distant OR , m-recursion call stack 
 
 //////////Most Brute Approach ---TLE
 
