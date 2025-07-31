@@ -71,6 +71,12 @@
 
 ////////////Most optimal solution 
 
+/////In bitwise OR a set bit never becomes unset 
+//// In bitwise OR -- of a given number >= current number 
+
+//OR operations can only add bits, never remove them
+//So in practice, each prev set has at most ~32 elements
+
 class Solution {
 public:
     int subarrayBitwiseORs(vector<int>& arr) {
@@ -79,7 +85,7 @@ public:
         unordered_set<int>curr;
         unordered_set<int>result;
         for(int i=0;i<n;i++){
-            for(auto &x : prev){
+            for(auto &x : prev){ ////it will maximum of 32 times only
                 curr.insert( x|arr[i] );
                 result.insert(x|arr[i]);
             }
@@ -91,3 +97,6 @@ public:
         return result.size();
     }
 };
+
+////t--o(n*A)--A-distinct OR ~o(32)-->o(n*32)-->o(n)
+////s-o(m)--m--number of distinct OR maxium OR =  n*32 
