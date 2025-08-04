@@ -43,7 +43,7 @@
 //     }
 // };
 
-/////////////////
+////////////////topological sorting
 
 
 class Solution {
@@ -55,19 +55,18 @@ public:
         for(int v=0;v<numCourses;v++){
             if(indegree[v] == 0){
                 que.push(v);
-                count++;
             }
         }
         while(!que.empty()){
             int u = que.front();
             que.pop();
-
+             count++;
             for(auto &v : adj[u]){
                 indegree[v]--;
 
                 if(indegree[v] == 0){
                     que.push(v);
-                    count++;
+                   
                 }
             }
         }
@@ -90,3 +89,5 @@ public:
         
     }
 };
+
+///////////cylce detection -- using DFS
