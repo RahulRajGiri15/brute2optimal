@@ -1,3 +1,5 @@
+// 2 loop 
+
 class Solution {
 public:
     int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
@@ -20,4 +22,8 @@ public:
     }
 };
 
-/////////////
+///t--o(n)
+///s--o(1)
+
+/////////////array + sorting - method 2 -- not work as sort will change indexes
+////////multiset -- index value problem -- not work
