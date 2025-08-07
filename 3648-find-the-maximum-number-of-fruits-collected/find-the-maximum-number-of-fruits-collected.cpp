@@ -170,3 +170,7 @@ public:
         return result + t[n-2][n-1] + t[n-1][n-2];
     }
 };
+
+//////t--o(n^2)
+
+////s--O(n^2)
