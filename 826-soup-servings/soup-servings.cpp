@@ -96,7 +96,11 @@ public:
         return t[A_left][B_left] = 0.25 * probp;
     }
     double soupServings(int n) {
-        if(n > 6000){
+            ////as A looses more than B 
+            /// than as n increases than probality of A looses all increases 
+            ///// A will most likely drain first we 
+            ////for large value of n A probalilty is close to 1
+        if(n > 6000){ 
             return 1.0;
         }
         t.resize(n+1,vector<double>(n+1,-1.0));
