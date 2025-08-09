@@ -39,16 +39,18 @@
 
 ////////////recursion 
 
-class Solution {
-public:
-    bool isPowerOfTwo(int n) {
-        if(n <= 0) return false;
-        if(n == 1) return true;
-        if(n %2 != 0) return false;
-        return isPowerOfTwo(n/2);
-    }
-};
+// class Solution {
+// public:
+//     bool isPowerOfTwo(int n) {
+//         if(n <= 0) return false;
+//         if(n == 1) return true;
+//         if(n %2 != 0) return false;
+//         return isPowerOfTwo(n/2);
+//     }
+// };
 
+////t--o(log(n))
+////s--o(log(n))
 
 
 //////////// bit wise 
@@ -79,3 +81,18 @@ public:
 
 ///t--o(1)
 ///s--o(1)
+
+/////////////BEST-Best approach
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+      if(n<=0) return false;
+      //if(n == 1) return true;
+      int poww = pow(2,30);
+      if(poww % n == 0){
+        return true;
+      }
+      return false;
+    }
+};
