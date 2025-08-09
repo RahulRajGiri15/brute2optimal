@@ -37,13 +37,26 @@
 ///t--o(1)
 ///s--o(1)---as 2^32 almost equals INT_MAX
 
-//////////// recursion 
+//////////// bit wise 
+
+// class Solution {
+// public:
+//     bool isPowerOfTwo(int n) {
+//         if(n == 1) return true;
+//         if(n > 0 && n%2 == 0){
+//             return (n & (n-1)) == 0;
+//         }
+//         return false;
+//     }
+// };
+
+////////or 
+
 
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
-        if(n == 1) return true;
-        if(n > 0 && n%2 == 0){
+        if(n > 0){
             return (n & (n-1)) == 0;
         }
         return false;
