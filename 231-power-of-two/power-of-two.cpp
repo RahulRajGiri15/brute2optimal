@@ -90,6 +90,10 @@ public:
       if(n<=0) return false;
       //if(n == 1) return true;
       int poww = pow(2,30);
+      //   if(int(pow(2,30)) % n == 0){
+      //     return true;
+      //   }
+      ///////////or
       if(poww % n == 0){
         return true;
       }
