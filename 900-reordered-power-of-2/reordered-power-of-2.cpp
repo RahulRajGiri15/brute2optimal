@@ -71,20 +71,45 @@
 
 //////////////// using digit count of n
 
+// class Solution {
+// public:
+//     vector<int> getvectorcount(int n){
+//         vector<int>vecc(10,0);
+//         while(n){
+//             vecc[n%10]++;
+//             n = n/10;
+//         }
+//         return vecc;
+//     }
+//     bool reorderedPowerOf2(int n) {
+//         vector<int> ans = getvectorcount(n);
+//         for(int i=0;i<=30;i++){
+//             if(ans == getvectorcount(1 << i)){
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+
+///////////another approach 
+//////no need to use vector 
 class Solution {
 public:
-    vector<int> getvectorcount(int n){
-        vector<int>vecc(10,0);
+    int getdigitcount(int n){
+        int num = 0;
         while(n){
-            vecc[n%10]++;
+            int poww = pow(10,n%10);
+            num += poww;
             n = n/10;
         }
-        return vecc;
+        return num;
     }
     bool reorderedPowerOf2(int n) {
-        vector<int> ans = getvectorcount(n);
+        int ans = getdigitcount(n);
         for(int i=0;i<=30;i++){
-            if(ans == getvectorcount(1 << i)){
+            if(ans == getdigitcount(1 << i)){
                 return true;
             }
         }
