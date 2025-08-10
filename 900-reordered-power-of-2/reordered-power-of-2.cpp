@@ -22,22 +22,72 @@
 ////s---O(d)
 
 
-///////////
+/////////// using unorderd set ///////
+
+// class Solution {
+// public:
+//     bool reorderedPowerOf2(int n) {
+//        unordered_set<string>st;
+//        for(int p=0;p<=30;p++){
+//         string poww = to_string(1 << p);
+//         sort(begin(poww),end(poww));
+//         st.insert(poww);
+//        }
+//        string s = to_string(n);
+//        sort(begin(s),end(s));
+//        if(!st.count(s)){
+//         return false;
+//        }
+//        return true;
+//     }
+// };
+
+/////////another way to write the code
+
+// class Solution {
+// public:
+//     unordered_set<string>st;
+//     void buildset(){
+//         for(int p=0;p<=30;p++){
+//         string poww = to_string(1 << p);
+//         sort(begin(poww),end(poww));
+//         st.insert(poww);
+//        }
+//     }
+//     bool reorderedPowerOf2(int n) {
+//        if(st.empty()){
+//         buildset(); //// if st is empty
+//        }
+//        string s = to_string(n);
+//        sort(begin(s),end(s));
+//     //    if(!st.count(s)){
+//     //     return false;
+//     //    }
+//     //    return true;
+
+//         return st.count(s);
+//     }
+// };
+
+//////////////// using digit count of n
 
 class Solution {
 public:
+    vector<int> getvectorcount(int n){
+        vector<int>vecc(10,0);
+        while(n){
+            vecc[n%10]++;
+            n = n/10;
+        }
+        return vecc;
+    }
     bool reorderedPowerOf2(int n) {
-       unordered_set<string>st;
-       for(int p=0;p<=30;p++){
-        string poww = to_string(1 << p);
-        sort(begin(poww),end(poww));
-        st.insert(poww);
-       }
-       string s = to_string(n);
-       sort(begin(s),end(s));
-       if(!st.count(s)){
+        vector<int> ans = getvectorcount(n);
+        for(int i=0;i<=30;i++){
+            if(ans == getvectorcount(1 << i)){
+                return true;
+            }
+        }
         return false;
-       }
-       return true;
     }
 };
