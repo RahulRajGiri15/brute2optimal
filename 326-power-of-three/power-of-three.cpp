@@ -115,15 +115,15 @@
 
 /////////// other approach -- equate 3^x = n and than find x value
 
-class Solution {
-public:
-    bool isPowerOfThree(int n) {
-        if(n<=0) return false;
-        double x = log10(n) / log10(3);
+// class Solution {
+// public:
+//     bool isPowerOfThree(int n) {
+//         if(n<=0) return false;
 
-        return x == int(x);
-    }
-};
+//         double x = log10(n) / log10(3);
+//         return x == int(x);
+//     }
+// };
 
 //////////// most efficent approach 
 ///// max value of n = 2,147,483,647 
@@ -141,14 +141,12 @@ public:
 // };
 
 ////////or 
+/// 3^19 = 1162261467
 
-// class Solution {
-// public:
-//     bool isPowerOfThree(int n) {
-//         double
-//         if(n > 0 && ((int)pow(3,19)) % n == 0){
-//             return true;
-//         }
-//         return false;
-//     }
-// };
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+    
+        return (n > 0 && 1162261467 % n == 0);
+    }
+};
