@@ -100,14 +100,47 @@
 
 ////////////// other approach 
 
+// class Solution {
+// public:
+    
+//     bool isPowerOfThree(int n) {
+//         if(n <= 0) return false;
+//         if(n == 1) return true;
+//         if(n % 3 != 0) return false;
+        
+//         return isPowerOfThree(n/3);
+//     }
+// };
+
+
+/////////// other approach -- equate 3^x = n and than find x value
+
+// class Solution {
+// public:
+    
+//     bool isPowerOfThree(int n) {
+//         if(n <= 0) return false;
+//         if(n == 1) return true;
+//         if(n % 3 != 0) return false;
+        
+//         return isPowerOfThree(n/3);
+//     }
+// };
+
+//////////// most efficent approach 
+///// max value of n = 2,147,483,647 
+///// max value of 3^x < 2,147,483,647 is 19 ans x = 20 is greater than than int_max
+//// so if we divide any n by 3 ^ 19 and if reminder is zero than n is power of 3
+
 class Solution {
 public:
     
     bool isPowerOfThree(int n) {
-        if(n <= 0) return false;
-        if(n == 1) return true;
-        if(n % 3 != 0) return false;
-        
-        return isPowerOfThree(n/3);
+
+    //     val = pow(3,19);
+    if(n > 0 && ((int)pow(3,19)) % n == 0){
+        return true;
+    }
+    return false;
     }
 };
