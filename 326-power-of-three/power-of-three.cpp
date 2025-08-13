@@ -17,25 +17,25 @@
 
 ////////
 
-class Solution {
-public:
-    bool isPowerOfThree(int n) {
-        while(n){
-            if(n % 3 == 0){
-                n = n/3;
-            }
-            else{
-                if(n == 1){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-        }
-       return false;
-    }
-};
+// class Solution {
+// public:
+//     bool isPowerOfThree(int n) {
+//         while(n){
+//             if(n % 3 == 0){
+//                 n = n/3;
+//             }
+//             else{
+//                 if(n == 1){
+//                     return true;
+//                 }
+//                 else{
+//                     return false;
+//                 }
+//             }
+//         }
+//        return false;
+//     }
+// };
 
 
 ////////////
@@ -98,18 +98,16 @@ public:
 //     }
 // };
 
-////////////// other approach other than recursion and loop
+////////////// other approach 
 
-
-// class Solution {
-// public:
-//     bool solve(long long val ,int  n){
-//         if(val == n) return true;
-//         if(val > n ) return false;
+class Solution {
+public:
+    
+    bool isPowerOfThree(int n) {
+        if(n <= 0) return false;
+        if(n == 1) return true;
+        if(n % 3 != 0) return false;
         
-//         return solve(val * 3 , n);
-//     }
-//     bool isPowerOfThree(int n) {
-//         return solve(1,n);
-//     }
-// };
+        return isPowerOfThree(n/3);
+    }
+};
