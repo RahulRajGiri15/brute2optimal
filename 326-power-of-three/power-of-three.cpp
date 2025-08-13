@@ -35,35 +35,39 @@
 
 ///////////wrong -- for large not work and pow return doubles
 
-// class Solution {
-// public:
-//     bool solve(int i ,int  n){
-        
-//         if((pow(3,i)) == n){
-//             return true;
-//         }
-//         if((pow(3,i)) > n){
-//             return false;
-//         }
-//         return solve(i+1,n);
-//     }
-//     bool isPowerOfThree(int n) {
-//         return solve(0,n);
-//     }
-// };
+class Solution {
+public:
+    bool solve(int i ,int  n){
+        long long  val =1;
+        for(int j=0;j<i;j++){
+            val = val*3;
+        }
+        if(val == n){
+            return true;
+        }
+        if(val > n){
+            return false;
+        }
+        return solve(i+1,n);
+    }
+    bool isPowerOfThree(int n) {
+        if(n <= 0) return false;
+        return solve(0,n);
+    }
+};
 
 ////////////////
 
 
-class Solution {
-public:
-    bool solve(long long val ,int  n){
-        if(val == n) return true;
-        if(val > n ) return false;
+// class Solution {
+// public:
+//     bool solve(long long val ,int  n){
+//         if(val == n) return true;
+//         if(val > n ) return false;
         
-        return solve(val * 3 , n);
-    }
-    bool isPowerOfThree(int n) {
-        return solve(1,n);
-    }
-};
+//         return solve(val * 3 , n);
+//     }
+//     bool isPowerOfThree(int n) {
+//         return solve(1,n);
+//     }
+// };
