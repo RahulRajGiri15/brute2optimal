@@ -39,7 +39,7 @@ class Solution {
 public:
     bool solve(int i ,int  n){
         long long  val =1;
-        for(int j=0;j<i;j++){
+        for(int j=1;j<i;j++){
             val = val*3;
         }
         if(val == n){
@@ -52,10 +52,12 @@ public:
     }
     bool isPowerOfThree(int n) {
         if(n <= 0) return false;
-        return solve(0,n);
+        return solve(1,n);
     }
 };
 
+////t--o(lo)
+////s--o(1)
 ////////////////
 
 
