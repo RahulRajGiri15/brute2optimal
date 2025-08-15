@@ -25,16 +25,36 @@
 
 ///////////another method
 
+// class Solution {
+// public:
+//     string largestGoodInteger(string num) {
+//         string res = "";
+//         for(int i=0;i<=num.size()-3;i++){
+//             if(num[i] == num[i+1] && num[i+1] == num[i+2]){
+//                 string curr = string(3,num[i]);
+//                 res = max(res,curr);
+//             }
+//         }
+//         return res;
+//     }
+// };
+
+///////////////
+
 class Solution {
 public:
     string largestGoodInteger(string num) {
-        string res = "";
-        for(int i=0;i<=num.size()-3;i++){
-            if(num[i] == num[i+1] && num[i+1] == num[i+2]){
-                string curr = string(3,num[i]);
-                res = max(res,curr);
+        string  res ="";
+        char maxchar = ' ';
+        for(int i=2;i<num.size();i++){
+            if(num[i] == num[i-1] && num[i] == num[i-2]){
+                maxchar = max(maxchar,num[i]);
             }
         }
+        if(maxchar == ' '){
+            return res;
+        }
+        res = string(3,maxchar);
         return res;
     }
 };
