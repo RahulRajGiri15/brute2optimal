@@ -8,7 +8,8 @@ public:
                 break;
             }
         }
-        int res = stoi(ans);
-        return res;
+        // int res = stoi(ans);
+        // return res;
+        return stoi(ans);
     }
 };
