@@ -19,30 +19,27 @@
 
 ////////////////loop 
 
-// class Solution {
-// public:
-//     bool isPowerOfFour(int n) {
-//         long long val = 1;
-//         if(n <= 0) return false;
-//         for(int i=0;i<n;i++){
-//             if(val == n){
-//                 return true;
-//             }
-//             val = val*4;
-//         }
-//         return false;
-//     }
-// };
-
-////////
-
 class Solution {
 public:
     bool isPowerOfFour(int n) {
+        long long val = 1;
         if(n <= 0) return false;
-        while(n%4 == 0){
-            n = n/4;
+        while(val < n){
+            val = val*4;
         }
-        return n == 1;
+        return val == n;
     }
 };
+
+////////
+
+// class Solution {
+// public:
+//     bool isPowerOfFour(int n) {
+//         if(n <= 0) return false;
+//         while(n%4 == 0){
+//             n = n/4;
+//         }
+//         return n == 1;
+//     }
+// };
