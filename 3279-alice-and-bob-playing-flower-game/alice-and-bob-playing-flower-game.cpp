@@ -18,18 +18,27 @@
 /////////// best method
 ///the only case where alis win is when pair sum is odd 
 
+// class Solution {
+// public:
+//     long long flowerGame(int n, int m) {
+//         long long cnt = 0;
+
+//         long long even_n = n/2;
+//         long long odd_n = (n+1)/2;
+//         long long even_m = m/2;
+//         long long odd_m = (m+1)/2;
+
+//         cnt = (even_n * odd_m) + (odd_n * even_m); 
+
+//         return cnt;
+//     }
+// };
+
+//////////// best method-2
+
 class Solution {
 public:
     long long flowerGame(int n, int m) {
-        long long cnt = 0;
-
-        long long even_n = n/2;
-        long long odd_n = (n+1)/2;
-        long long even_m = m/2;
-        long long odd_m = (m+1)/2;
-
-        cnt = (even_n * odd_m) + (odd_n * even_m); 
-
-        return cnt;
+        return 1ll* ((n+1)/2) * (m/2) + 1ll * (n/2) * ((m+1)/2);
     }
 };
