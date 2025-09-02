@@ -233,32 +233,61 @@
 ////////////////////////////
 
 
+// class Solution {
+// public:
+//     void DFS(vector<vector<int>>& adj,int u,vector<bool>& visited){
+//         visited[u] =true;
+//         for(auto &v : adj[u]){
+//             if(visited[v] == false){
+//                 DFS(adj,v,visited);
+//             }
+//         }
+//     }
+//     int findCircleNum(vector<vector<int>>& isConnected) {
+//         int V = isConnected.size();
+//         vector<vector<int>>adj(V);
+//         for(int u=0;u<V;u++){
+//             for(int v=0;v<V;v++){
+//                 if(isConnected[u][v] == 1){
+//                     adj[u].push_back(v);
+//                     adj[v].push_back(u);
+//                 }
+//             }
+//         }
+//         vector<bool>visited(V,false);
+//         int count = 0;
+//         for(int i=0;i<V;i++){
+//             if(visited[i] == false){
+//                 DFS(adj,i,visited);
+//                 count++;
+//             }
+//         }
+//         return count;
+//     }
+// };
+
+/////////////
+
+
 class Solution {
 public:
-    void DFS(vector<vector<int>>& adj,int u,vector<bool>& visited){
+    int V;
+    void DFS(vector<vector<int>>& isConnected,int u,vector<bool>& visited){
         visited[u] =true;
-        for(auto &v : adj[u]){
-            if(visited[v] == false){
-                DFS(adj,v,visited);
+        for(int v=0;v<V;v++){
+            if(visited[v] == false && isConnected[u][v] == 1){
+                DFS(isConnected,v,visited);
             }
         }
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
-        int V = isConnected.size();
-        vector<vector<int>>adj(V);
-        for(int u=0;u<V;u++){
-            for(int v=0;v<V;v++){
-                if(isConnected[u][v] == 1){
-                    adj[u].push_back(v);
-                    adj[v].push_back(u);
-                }
-            }
-        }
+        V = isConnected.size();
+        
         vector<bool>visited(V,false);
         int count = 0;
         for(int i=0;i<V;i++){
             if(visited[i] == false){
-                DFS(adj,i,visited);
+                DFS(isConnected,i,visited);
                 count++;
             }
         }
