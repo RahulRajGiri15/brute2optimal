@@ -103,14 +103,14 @@ public:
                 int u = num[0];
                 int v = num[1];
                 adj[v].push_back(u);
-                //indegree[u]++;
+                indegree[u]++;
         }
         
-        for(int i=0;i<n;i++){
-            for(int &t : adj[i]){
-                indegree[t]++;
-            }
-        }
+        // for(int i=0;i<n;i++){
+        //     for(int &t : adj[i]){
+        //         indegree[t]++;
+        //     }
+        // }
         queue<int>que;
         for(int i=0;i<n;i++){
             if(indegree[i] == 0){
