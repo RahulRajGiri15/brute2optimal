@@ -32,6 +32,10 @@ public:
                 }
             }
         }
-        return (result.size() == n)? result : vector<int>();
+        //return (result.size() == n)? result : vector<int>();
+        if(result.size() == n){
+            return result;
+        }
+        return vector<int>();
     }
 };
