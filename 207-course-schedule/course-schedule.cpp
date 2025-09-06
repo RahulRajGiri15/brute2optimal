@@ -140,10 +140,50 @@
 
 //////////////06-09-2025 --- in this we will use DFS to solve this 
 
+// class Solution {
+// public:
+//     int n;
+//     bool iscycle(vector<vector<int>>&adj,int u,vector<bool>&visited,vector<bool>&inrecursion){
+//         visited[u] = true;
+//         inrecursion[u] = true;
+//         for(auto &v : adj[u]){
+//             if(visited[v] == false && iscycle(adj,v,visited,inrecursion)){
+//                 return true;
+//             }
+//             else if(inrecursion[v] == true){
+//                 return true;
+//             }
+//         } 
+//         inrecursion[u] = false;
+//         return false;
+//     }
+//     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//         //// first make adjency matrix / list
+//         n = numCourses;
+//         vector<vector<int>> adj(n);
+//         for(auto &num : prerequisites){
+//             int u = num[0];
+//             int v = num[1];
+//             adj[v].push_back(u);
+//         }
+//         vector<bool>visited(n,false);
+//         vector<bool>inrecursion(n,false);
+//         for(int i=0;i<n;i++){
+//             if(visited[i] == false && iscycle(adj,i,visited,inrecursion)){ 
+//                 return false; ///////if cycle is present--not possible to finsish
+//             }
+//         }
+//         return true;
+//     }
+// };
+
+
+////////////////06-09-2025--using adjesensy list --- DFS
+
 class Solution {
 public:
     int n;
-    bool iscycle(vector<vector<int>>&adj,int u,vector<bool>&visited,vector<bool>&inrecursion){
+    bool iscycle(unordered_map<int,vector<int>> &adj,int u,vector<bool>&visited,vector<bool>&inrecursion){
         visited[u] = true;
         inrecursion[u] = true;
         for(auto &v : adj[u]){
@@ -160,7 +200,8 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         //// first make adjency matrix / list
         n = numCourses;
-        vector<vector<int>> adj(n);
+        //vector<vector<int>> adj(n);
+        unordered_map<int,vector<int>> adj;
         for(auto &num : prerequisites){
             int u = num[0];
             int v = num[1];
@@ -170,7 +211,7 @@ public:
         vector<bool>inrecursion(n,false);
         for(int i=0;i<n;i++){
             if(visited[i] == false && iscycle(adj,i,visited,inrecursion)){ 
-                return false; ///////if cycle is present
+                return false; ///////if cycle is present--not possible to finsish
             }
         }
         return true;
