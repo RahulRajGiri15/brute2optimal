@@ -92,47 +92,87 @@
 
 ///////////cylce detection -- topologocal sort
 
+// class Solution {
+// public:
+//     int n;
+//     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//         unordered_map<int,vector<int>>adj;
+//         n = numCourses;
+//         vector<int>indegree(n,0);
+//         for(auto &num : prerequisites){
+//                 int u = num[0];
+//                 int v = num[1];
+//                 adj[v].push_back(u);
+//                 indegree[u]++;
+//         }
+        
+//         // for(int i=0;i<n;i++){
+//         //     for(int &t : adj[i]){
+//         //         indegree[t]++;
+//         //     }
+//         // }
+//         queue<int>que;
+//         for(int i=0;i<n;i++){
+//             if(indegree[i] == 0){
+//                 que.push(i);
+//             }
+//         }
+//         ///// bfs
+//         int count =0;
+//         while(!que.empty()){
+//             int u= que.front();
+//             que.pop();
+//             count++;
+//             for(auto v : adj[u]){
+//                 indegree[v]--;
+//                 if(indegree[v] == 0){
+//                     que.push(v);
+//                 }
+//             }
+//         }
+//         if(count == n){
+//             return true; /// no cycle is present 
+//         }
+//         return false;
+//     }
+// };
+
+
+//////////////06-09-2025 --- in this we will use DFS to solve this 
+
 class Solution {
 public:
     int n;
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int,vector<int>>adj;
-        n = numCourses;
-        vector<int>indegree(n,0);
-        for(auto &num : prerequisites){
-                int u = num[0];
-                int v = num[1];
-                adj[v].push_back(u);
-                indegree[u]++;
-        }
-        
-        // for(int i=0;i<n;i++){
-        //     for(int &t : adj[i]){
-        //         indegree[t]++;
-        //     }
-        // }
-        queue<int>que;
-        for(int i=0;i<n;i++){
-            if(indegree[i] == 0){
-                que.push(i);
+    bool iscycle(vector<vector<int>>&adj,int u,vector<bool>&visited,vector<bool>&inrecursion){
+        visited[u] = true;
+        inrecursion[u] = true;
+        for(auto &v : adj[u]){
+            if(visited[v] == false && iscycle(adj,v,visited,inrecursion)){
+                return true;
             }
-        }
-        ///// bfs
-        int count =0;
-        while(!que.empty()){
-            int u= que.front();
-            que.pop();
-            count++;
-            for(auto v : adj[u]){
-                indegree[v]--;
-                if(indegree[v] == 0){
-                    que.push(v);
-                }
+            else if(inrecursion[v] == true){
+                return true;
             }
-        }
-        if(count == n){
-            return true; /// no cycle is present 
-        }
+        } 
+        inrecursion[u] = false;
         return false;
+    }
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        //// first make adjency matrix / list
+        n = numCourses;
+        vector<vector<int>> adj(n);
+        for(auto &num : prerequisites){
+            int u = num[0];
+            int v = num[1];
+            adj[v].push_back(u);
+        }
+        vector<bool>visited(n,false);
+        vector<bool>inrecursion(n,false);
+        for(int i=0;i<n;i++){
+            if(visited[i] == false && iscycle(adj,i,visited,inrecursion)){ 
+                return false; ///////if cycle is present
+            }
+        }
+        return true;
     }
 };
