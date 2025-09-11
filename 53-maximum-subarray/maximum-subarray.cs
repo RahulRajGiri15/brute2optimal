@@ -5,10 +5,10 @@ public class Solution {
         int maxsum = int.MinValue;
         for(int i=0;i<n;i++){
             sum += nums[i];
-            //maxsum = Max(sum,maxsum);
-            if(maxsum < sum){
-                maxsum = sum;
-            }
+            maxsum = Math.Max(sum,maxsum);
+            // if(maxsum < sum){
+            //     maxsum = sum;
+            // }
             if(sum < 0){
                 sum =0;
             }
