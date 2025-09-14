@@ -1,71 +1,68 @@
 class Solution {
 public:
-    unordered_set<string> exactWords;          // stores original words
-    unordered_map<string, string> caseMap;     // lowercase : original word
-    unordered_map<string, string> vowelMap;    // masked vowels : original word
-    
-    string toLower(const string& s) {
-        string res = s;
-        for (char& c : res) {
-            c = tolower(c);
-        }
-        return res;
-    }
+    unordered_set<string>exactset;
+    unordered_map<string,string>casemp;
+    unordered_map<string,string>vowelmp;
 
-    string maskVowels(const string& s) {
-        string res = s;
-        for (char& c : res) {
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+    string tolowerr(string s){
+        string r ="";
+        for(char &c : s){
+            r.push_back(tolower(c));
+        }
+        return r;
+    }
+    string tovowel(string s){
+        string r ="";
+        for(char &c : s){
+            if(c == 'a'|| c == 'e'|| c == 'i'|| c == 'o'|| c == 'u'){
                 c = '*';
+                r.push_back(c);
             }
+            else{
+                r.push_back(c);
+            }
+            
         }
-        return res;
+        return r;
     }
-
-    string checkForMatch(const string& query) {
-        // Exact match
-        if (exactWords.count(query)) {
+    string checkforpri(string query){
+        if(exactset.count(query)){
             return query;
         }
-
-        // Case error match
-        string lowerQuery = toLower(query);
-        if (caseMap.count(lowerQuery)) {
-            return caseMap[lowerQuery];
+        string lowercase = tolowerr(query);
+        if(casemp.count(lowercase)){
+            return casemp[lowercase];
         }
-
-        // Vowel error match
-        string maskedQuery = maskVowels(lowerQuery);
-        if (vowelMap.count(maskedQuery)) {
-            return vowelMap[maskedQuery];
+        string vowelcase = tovowel(lowercase);
+        if(vowelmp.count(vowelcase)){
+            return vowelmp[vowelcase];
         }
-
-        // 4. No match
         return "";
     }
 
+
     vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {
-        exactWords.clear();
-        caseMap.clear();
-        vowelMap.clear();
+        exactset.clear();
+        casemp.clear();
+        vowelmp.clear();
 
-        for (string word : wordlist) {
-            exactWords.insert(word);
-
-            string lowerWord = toLower(word);
-            if (caseMap.find(lowerWord) == caseMap.end()) { //Add only 1st occurrence
-                caseMap[lowerWord] = word;
+        for(auto word : wordlist){
+            ///filling in set
+            exactset.insert(word);
+            string lowercase = tolowerr(word);
+            ///filling in map
+            if(casemp.find(lowercase) == casemp.end()){
+                casemp[lowercase] = word;
             }
-
-            string maskedWord = maskVowels(lowerWord);
-            if (vowelMap.find(maskedWord) == vowelMap.end()) { //Add only 1st occurrence
-                vowelMap[maskedWord] = word;
+            ////filling in vowel
+            string vowelcase = tovowel(lowercase);
+            if(vowelmp.find(vowelcase) == vowelmp.end()){
+                vowelmp[vowelcase] = word;
             }
         }
-
-        vector<string> result;
-        for (string query : queries) {
-            result.push_back(checkForMatch(query));
+        vector<string>result;
+        for(auto &query : queries){
+            result.push_back(checkforpri(query));
         }
         return result;
     }
