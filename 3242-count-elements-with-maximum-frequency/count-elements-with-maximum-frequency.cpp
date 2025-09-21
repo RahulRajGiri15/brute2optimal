@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxFrequencyElements(vector<int>& nums) {
-        unordered_map<int,int>mp;
+        unordered_map<int,int>mp; 
         for(int i=0;i<nums.size();i++){
             mp[nums[i]]++;
         }
@@ -23,3 +23,6 @@ public:
         return maxcount;
     }
 };
+
+///t--O(n) ; n= size of nums
+///s---o(n)
