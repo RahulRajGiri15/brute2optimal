@@ -16,22 +16,22 @@
 
 /////////using momoization----dynamic programming --top to bottom 
 
-class Solution {
-public:
-    int solve(int n,vector<int>&dp){
+// class Solution {
+// public:
+//     int solve(int n,vector<int>&dp){
 
-        if(n<=1) return n;
-        if(dp[n] != -1) return dp[n];
+//         if(n<=1) return n;
+//         if(dp[n] != -1) return dp[n];
 
-        return dp[n] = solve(n-1,dp)+solve(n-2,dp);
+//         return dp[n] = solve(n-1,dp)+solve(n-2,dp);
 
-    }
-    int fib(int n) {
+//     }
+//     int fib(int n) {
 
-        vector<int> dp(n+1,-1);
-        return solve(n,dp);
-    }
-};
+//         vector<int> dp(n+1,-1);
+//         return solve(n,dp);
+//     }
+// };
 /////t-o(n)
 /////s-o(n)
 
@@ -74,3 +74,17 @@ public:
 
 ////t-o(n)
 ////s-o(1)
+
+///////////////////////////////////////////////////
+
+class Solution {
+public:
+    int fib(int n) {
+
+        if(n ==1) return 1;
+        if(n == 0) return 0;
+
+        return fib(n-1) + fib(n-2);
+        
+    }
+};
