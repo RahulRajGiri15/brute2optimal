@@ -18,11 +18,17 @@
 
 ########OR
 
-select w1.id 
-from Weather w1 
-INNER JOIN weather w2
-ON SUBDATE(w1.recordDate,1) = W2.recordDate And w1.temperature > w2.temperature 
+-- select w1.id 
+-- from Weather w1 
+-- INNER JOIN weather w2
+-- ON SUBDATE(w1.recordDate,1) = W2.recordDate And w1.temperature > w2.temperature 
 
 
 ####SUBDATE - it means subtract dates w1 date -1 = w2.date
 ####DATEDIFF - it means subtract dates w1 date - w2 date = 1
+
+
+select w2.id
+from Weather w1
+Join weather w2
+where w1.recordDate = subdate(w2.recordDate,1) and w1.temperature < w2.temperature;
