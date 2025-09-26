@@ -1,8 +1,8 @@
 class Solution {
 public:
     void reverseString(vector<char>& s) {
-        vector<char> s2;
-        int n = s.size();
+        // vector<char> s2;
+        // int n = s.size();
         // for(int i=n-1;i>=0;i--){
         //     s2.push_back(s[i]);
         // }
