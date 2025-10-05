@@ -5,11 +5,16 @@ public:
         int empty = numBottles;
 
         while(empty >= numExchange){
-            // int newbottles = empty / numExchange;
-            // drank +=  newbottles;
-            
-            empty = (empty - numExchange) + 1;
+
+            // empty = (empty - numExchange) + 1;
+            // drank = drank +1;
+            // numExchange++;
+
+            /////////////////////////////////////
+
+            empty = empty - numExchange;
             drank = drank +1;
+            empty = empty +1;
             numExchange++;
             
         }
