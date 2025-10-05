@@ -9,8 +9,9 @@ public:
             // drank +=  newbottles;
             
             empty = (empty - numExchange) + 1;
-            numExchange++;
             drank = drank +1;
+            numExchange++;
+            
         }
         return drank;
     }
