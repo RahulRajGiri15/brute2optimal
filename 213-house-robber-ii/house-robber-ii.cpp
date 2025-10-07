@@ -42,11 +42,11 @@ public:
             return nums[0];
         }
         
-        int n = nums.size() ;
+        int n = nums.size() -1;
         memset(t, -1,sizeof(t));
-        int first = solve(nums , 0, n-2); ///if choosing first than don't take last elemnt in ar
+        int first = solve(nums , 0, n-1); ///if choosing first than don't take last elemnt in ar
         memset(t, -1,sizeof(t));
-        int second = solve(nums, 1 , n-1); ///if choosing second than don't take first in arr
+        int second = solve(nums, 1 , n); ///if choosing second than don't take first in arr
 
         return max(first,second);
     }
