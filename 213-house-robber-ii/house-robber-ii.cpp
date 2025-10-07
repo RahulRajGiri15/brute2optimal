@@ -41,6 +41,9 @@ public:
         if(nums.size() == 1){
             return nums[0];
         }
+        if(nums.size() == 2){
+            return max(nums[0] , nums[1]);
+        }
         
         int n = nums.size() -1;
         memset(t, -1,sizeof(t));
