@@ -116,23 +116,44 @@
 
 ////////////////////////////
 
+// class Solution {
+// public:
+//     int solve(vector<int>& nums,int i,vector<int>&dp){
+//         if(i > nums.size() - 1){
+//             return 0;
+//         }
+//         if(dp[i] != -1)return dp[i];
+//         int steal = nums[i] + solve(nums,i+2,dp);
+//         int skip = solve(nums,i+1,dp);
+
+//         return dp[i] = max(steal,skip);
+//     }
+//     int rob(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int>dp(n,-1);
+//         return solve(nums,0,dp);
+//     }
+// };
+
+////////////////////
+
 class Solution {
 public:
-    int solve(vector<int>& nums,int i,vector<int>&dp){
+    int t[101];
+    int solve(vector<int>& nums,int i){
         if(i > nums.size() - 1){
             return 0;
         }
-        if(dp[i] != -1)return dp[i];
-        int steal = nums[i] + solve(nums,i+2,dp);
-        int skip = solve(nums,i+1,dp);
+        if(t[i] != -1) return t[i];
+        int steal = nums[i] + solve(nums,i+2);
+        int skip = solve(nums,i+1);
 
-        return dp[i] = max(steal,skip);
+        return t[i] = max(steal,skip);
         
     }
     int rob(vector<int>& nums) {
         int n = nums.size();
-        vector<int>dp(n,-1);
-        return solve(nums,0,dp);
+        memset(t, -1 ,sizeof(t));
+        return solve(nums,0);
     }
 };
-
