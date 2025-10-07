@@ -137,23 +137,43 @@
 
 ////////////////////
 
+// class Solution {
+// public:
+//     int t[101];
+//     int solve(vector<int>& nums,int i){
+//         if(i > nums.size() - 1){
+//             return 0;
+//         }
+//         if(t[i] != -1) return t[i];
+//         int steal = nums[i] + solve(nums,i+2);
+//         int skip = solve(nums,i+1);
+
+//         return t[i] = max(steal,skip);
+        
+//     }
+//     int rob(vector<int>& nums) {
+//         int n = nums.size();
+//         memset(t, -1 ,sizeof(t));
+//         return solve(nums,0);
+//     }
+// };
+
+
+
+///////////////
+
 class Solution {
 public:
-    int t[101];
-    int solve(vector<int>& nums,int i){
-        if(i > nums.size() - 1){
-            return 0;
-        }
-        if(t[i] != -1) return t[i];
-        int steal = nums[i] + solve(nums,i+2);
-        int skip = solve(nums,i+1);
-
-        return t[i] = max(steal,skip);
-        
-    }
     int rob(vector<int>& nums) {
         int n = nums.size();
-        memset(t, -1 ,sizeof(t));
-        return solve(nums,0);
+        vector<int>t(n+1,0); /////maxm money by robbing till i housese
+        t[0] =0;
+        t[1] = nums[0];
+        for(int i=2;i<=n;i++){
+            int steal = nums[i-1] + t[i-2] ;
+            int skip  = t[i-1];
+            t[i] = max(steal,skip);
+        }
+        return t[n];
     }
 };
