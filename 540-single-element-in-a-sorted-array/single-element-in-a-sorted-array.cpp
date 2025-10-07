@@ -17,6 +17,48 @@
 
 /////////////////
 
+// class Solution {
+// public:
+//     int singleNonDuplicate(vector<int>& nums) {
+//         int n = nums.size();
+//         if(n == 1){
+//             return nums[0];
+//         }
+//         int i=0;
+//         while(i < n-1){
+//             if(nums[i] != nums[i+1]){
+//                 break;
+//             }
+//             i = i+2;
+//         }
+//         return nums[i];
+//     }
+// };
+
+
+//////////////////////////
+
+// class Solution {
+// public:
+//     int singleNonDuplicate(vector<int>& nums) {
+//         int n = nums.size();
+//         if(n == 1){
+//             return nums[0];
+//         }
+//         int i=0;
+//         while(i < n-1){
+//             if(nums[i] != nums[i+1]){
+//                 break;
+//             }
+//             i = i+2;
+//         }
+//         return nums[i];
+//     }
+// };
+
+/////////////////////
+
+
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
@@ -24,13 +66,12 @@ public:
         if(n == 1){
             return nums[0];
         }
-        int i=0;
-        while(i < n-1){
-            if(nums[i] != nums[i+1]){
-                break;
-            }
-            i = i+2;
+        int x = nums[0];
+        int i=1;
+        while(i < n){
+            x ^= nums[i];
+            i++;
         }
-        return nums[i];
+        return x;
     }
 };
