@@ -370,14 +370,47 @@
 
 ///////////////////////////////////////////
 
+// class Solution {
+// public:
+//     int V;
+//     void dfss(vector<vector<int>>&isConnected,vector<bool>&visited,int u){
+//         visited[u] = true;
+//         for(int v=0;v<V;v++){
+//             if(visited[v] == false && isConnected[u][v] == 1){
+//                 dfss(isConnected,visited,v);
+//             }
+//         }
+//     }
+//     int findCircleNum(vector<vector<int>>& isConnected) {
+//         V = isConnected.size();
+//         vector<bool>visited(V,false);
+//         int count = 0;
+//         for(int i=0;i<V;i++){
+//             if(visited[i] == false){
+//                 dfss(isConnected,visited,i);
+//                 count++;
+//             }
+//         }
+//         return count;
+//     }
+// };
+
+///////////////////bfs
+
 class Solution {
 public:
     int V;
     void dfss(vector<vector<int>>&isConnected,vector<bool>&visited,int u){
         visited[u] = true;
-        for(int v=0;v<V;v++){
-            if(visited[v] == false && isConnected[u][v] == 1){
-                dfss(isConnected,visited,v);
+        queue<int>que;
+        que.push(u);
+        while(!que.empty()){
+            int u = que.front();
+            que.pop();
+            for(int v=0;v<V;v++){
+                if(visited[v] == false && isConnected[u][v] ==1){
+                    dfss(isConnected,visited,v);
+                }
             }
         }
     }
