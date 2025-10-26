@@ -27,18 +27,46 @@
 
 ////////////////////
 
+// class Solution {
+// public:
+//     int totalMoney(int n) {
+//         int result =0;
+//         int week =0;
+//         while(n > 0){
+//             for(int i=1;i<= min(n,7);i++){
+//                 result += i + week;
+//             }
+//             n = n-7;
+//             week++;
+//         }
+//         return result;
+//     }
+// };
+
+/////////////////////////////////using ap concept
+
 class Solution {
 public:
     int totalMoney(int n) {
         int result =0;
-        int week =0;
-        while(n > 0){
-            for(int i=1;i<= min(n,7);i++){
-                result += i + week;
-            }
-            n = n-7;
-            week++;
+        
+        int totalweeks = n / 7;
+        int reminingdays = n % 7;
+
+        int firstel = 28; /// first week sum
+        int lastweekel = firstel +(totalweeks - 1) * 7;  /////// last = a + (n-1)*d
+
+        result = totalweeks * (firstel + lastweekel)/2; ////sum = n*(a1 + al)/2;
+
+        ///for remaining days 
+
+        int startel = 1 + totalweeks;
+        for(int i =1;i<= reminingdays;i++){
+            result += startel;
+            startel++;
         }
         return result;
+
+
     }
 };
