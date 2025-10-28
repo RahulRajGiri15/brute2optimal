@@ -13,10 +13,14 @@ public:
             } 
             idx += dirn;
         }
-        if(count == 0){
-            return true;
-        }
-        return false;
+        // if(count == 0){
+        //     return true;
+        // }
+        // return false;
+
+        /////////or 
+
+        return count == 0;
     }
     int countValidSelections(vector<int>& nums) {
         int count =0;
