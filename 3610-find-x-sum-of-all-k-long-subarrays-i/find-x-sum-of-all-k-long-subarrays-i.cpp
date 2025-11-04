@@ -1,25 +1,23 @@
 class Solution {
 public:
-    typedef pair<int ,int> P; //// freq , number
-    int findtopsum(unordered_map<int,int>& mp, int x){
-        ////min heap
-        priority_queue< P ,vector<P> , greater<P>> pq; /// min heap
-
+    typedef pair<int , int> P; ////freq, num 
+    int findtopsum(unordered_map<int,int>& mp , int x){
+        ///min heap
+        priority_queue< P, vector<P>, greater<P>> pq; /// freq , num
         for(auto &it : mp){
-            pq.push({it.second,it.first});
-            
+            pq.push({it.second , it.first});
             if(pq.size() > x){
                 pq.pop();
             }
         }
         int sum =0;
         while(!pq.empty()){
-
-            auto [freq,val] = pq.top();
+            auto [freq, val] = pq.top();
             pq.pop();
             sum += freq * val;
         }
         return sum;
+
     }
     vector<int> findXSum(vector<int>& nums, int k, int x) {
         int n = nums.size();
@@ -43,3 +41,6 @@ public:
         return res;
     }
 };
+
+
+//////////in this questions we had to use the sldiding window problem with min heap concept
