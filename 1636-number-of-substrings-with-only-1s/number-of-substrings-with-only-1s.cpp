@@ -71,14 +71,38 @@
 
 //////////////////////////
 
+// class Solution {
+// public:
+//     int numSub(string s) {
+//         int n = s.size();
+//         const int M = 1e9 + 7;
+
+//         long long count = 0;
+//         long long res = 0;
+//         for(int i=0;i<n;i++){ 
+//             if(s[i] == '1'){
+//                 count++;
+//                 res = (res + count) % M;
+//             }
+//             else{
+//                 count = 0;
+//             }
+//         }
+//         return int(res);
+//     }
+// };
+
+///////////////
+
+
 class Solution {
 public:
     int numSub(string s) {
         int n = s.size();
         const int M = 1e9 + 7;
 
-        long long count = 0;
-        long long res = 0;
+        int count = 0;
+        int res = 0;
         for(int i=0;i<n;i++){ 
             if(s[i] == '1'){
                 count++;
@@ -88,6 +112,6 @@ public:
                 count = 0;
             }
         }
-        return int(res);
+        return res;
     }
 };
