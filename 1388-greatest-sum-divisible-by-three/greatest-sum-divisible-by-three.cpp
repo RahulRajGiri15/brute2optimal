@@ -191,8 +191,9 @@ public:
         t[n][2] = INT_MIN;
         for(int i = n-1; i>=0; i--){
             for(int rem = 0; rem<=2; rem++){
+
                 int newrem = (rem + nums[i]) % 3;
-                int take = nums[i] + t[i+1][newrem];
+                int take = (t[i+1][newrem] == INT_MIN)?INT_MIN : (nums[i] + t[i+1][newrem]);
                 int skip = t[i+1][rem];
                 t[i][rem] = max(take ,skip);
             }
