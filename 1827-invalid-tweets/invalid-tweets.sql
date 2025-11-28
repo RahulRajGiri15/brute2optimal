@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 
-# Select tweet_id from Tweets where length(content) > 15 ;
-
-# another method
-
-Select tweet_id from Tweets where char_length(content) > 15 ;
+select tweet_id 
+from tweets
+-- group by tweet_id 
+-- having length(content) >= 15
+where length(content) > 15
