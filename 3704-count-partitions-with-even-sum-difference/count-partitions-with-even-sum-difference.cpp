@@ -1,19 +1,35 @@
+// class Solution {
+// public:
+//     int countPartitions(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int>presum(n+1,0);
+//         for(int i=0;i<n;i++){
+//             presum[i+1] = presum[i] + nums[i];
+//         }
+//         int count = 0;
+//         for(int i = 0; i<n-1; i++){ ///n-1 because we don't want right side to be empty
+//             int leftsum = presum[i+1]; ///(0 ... i+1)
+//             int rightsum = presum[n] - presum[i+1];
+//             if(abs(rightsum - leftsum) %2 == 0){
+//                 count++;
+//             }
+//         }
+//     return count;
+//     }
+// };
+
+/////////////////////////
+
+
 class Solution {
 public:
     int countPartitions(vector<int>& nums) {
-        int n = nums.size();
-        vector<int>presum(n+1,0);
-        for(int i=0;i<n;i++){
-            presum[i+1] = presum[i] + nums[i];
+        int sum = accumulate(begin(nums),end(nums),0);
+        if(sum % 2 == 0){
+            return nums.size()-1;
         }
-        int count = 0;
-        for(int i = 0; i<n-1; i++){ ///n-1 because we don't want right side to be empty
-            int leftsum = presum[i+1]; ///(0 ... i+1)
-            int rightsum = presum[n] - presum[i+1];
-            if(abs(rightsum - leftsum) %2 == 0){
-                count++;
-            }
+        else{
+            return 0;
         }
-    return count;
     }
 };
