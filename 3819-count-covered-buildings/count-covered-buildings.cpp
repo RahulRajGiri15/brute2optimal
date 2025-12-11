@@ -1,45 +1,36 @@
-//Approach (storing in Map and checking)
-//T.C : O(n)
-//S.C : O(n)
 class Solution {
 public:
     int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
-        unordered_map<int, pair<int,int>> yToMinMaxX;
-        unordered_map<int, pair<int,int>> xToMinMaxY;
-
-        for (auto &building : buildings) {
+        unordered_map<int,pair<int,int>>ytominmaxx;
+        unordered_map<int,pair<int,int>>xtominmaxy;
+        for(auto &building : buildings){
             int x = building[0];
             int y = building[1];
+            if(!ytominmaxx.count(y))
+                ytominmaxx[y] = {INT_MAX,INT_MIN};
+            if(!xtominmaxy.count(x))
+                xtominmaxy[x] = {INT_MAX,INT_MIN};
+            ytominmaxx[y].first = min(ytominmaxx[y].first,x);
+            ytominmaxx[y].second = max(ytominmaxx[y].second,x);
 
-            if (!yToMinMaxX.count(y))
-                yToMinMaxX[y] = {INT_MAX, INT_MIN};
-
-            if (!xToMinMaxY.count(x))
-                xToMinMaxY[x] = {INT_MAX, INT_MIN};
-
-            yToMinMaxX[y].first  = min(yToMinMaxX[y].first, x);
-            yToMinMaxX[y].second = max(yToMinMaxX[y].second, x);
-
-            xToMinMaxY[x].first = min(xToMinMaxY[x].first, y);
-            xToMinMaxY[x].second = max(xToMinMaxY[x].second, y);
+            xtominmaxy[x].first = min(xtominmaxy[x].first,y);
+            xtominmaxy[x].second = max(xtominmaxy[x].second,y);
+            
         }
 
         int result = 0;
-
-        for (auto &building : buildings) {
+        for(auto &building : buildings){
             int x = building[0];
             int y = building[1];
 
+            auto &xr = ytominmaxx[y];
+            auto &yr = xtominmaxy[x];
 
-            auto &xr = yToMinMaxX[y];
-            auto &yr = xToMinMaxY[x];
-
-            if (xr.first < x && x < xr.second &&
-                yr.first < y && y < yr.second) {
-                result++;
-            }
+            if(xr.first < x && x < xr.second && yr.first < y 
+                && y < yr.second){
+                    result++;
+                }
         }
-
         return result;
     }
 };
