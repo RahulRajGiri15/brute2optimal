@@ -24,8 +24,8 @@ public:
             total_area += len * len;
             double x = square[0];
             double y = square[1];
-            double l = square[2];
-            high = max(high,y+l);
+            
+            high = max(high,y+len);
             low = min (low , y);
         }
 
