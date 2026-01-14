@@ -1,43 +1,45 @@
 class Solution {
 public:
-    bool check(vector<vector<int>>& squares, double mid_y , double total){
-        double bot_area = 0;
+    bool check(vector<vector<int>> &squares,double mid, double total_area){
+        double botm_area = 0.0;
         for(auto &square : squares){
-            double y = square[1];
-            double l = square[2];
-            double boty = y;
-            double topy = y+l;
+            double boty = square[1];
+            double len = square[2];
 
-            if(mid_y > topy){
-                bot_area += l*l;
-            }else if(mid_y > boty){
-                bot_area += l *(mid_y - boty);
+            if(mid > (boty + len)){
+                botm_area += len * len;
+            }
+            else if(mid > boty){
+                botm_area += len * (mid - boty);
             }
         }
-        return (bot_area >= total/2.0);
+        return (botm_area >= total_area/2.0);
     }
     double separateSquares(vector<vector<int>>& squares) {
-        double low = INT_MAX;
+        double total_area = 0.0;
         double high = INT_MIN;
-        double total = 0.00000;
+        double low = INT_MAX;
         for(auto &square : squares){
+            double len = square[2];
+            total_area += len * len;
             double x = square[0];
             double y = square[1];
             double l = square[2];
-            total += l * l;
-
-            low = min(low , y);
-            high = max(high , y+l);
+            high = max(high,y+l);
+            low = min (low , y);
         }
-        double result_y = 0.00000;
-        
-        while(high - low > 1e-5){
-            double mid_y = low + (high - low)/2;
-            result_y = mid_y;
-            if(check(squares,mid_y,total) == true){
-                high = mid_y;
-            } else{
-                low = mid_y;
+
+      
+        double result_y = 0.0;
+        while(high - low >= 1e-5){
+            double mid = low + (high - low)/2;
+            result_y = mid;
+
+            if(check(squares,mid,total_area) == true){
+                high = mid;
+            }
+            else{
+                low = mid;
             }
         }
         return result_y;
