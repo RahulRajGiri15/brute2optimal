@@ -26,6 +26,7 @@ public:
                 }
             }
         }
-        return (maxcomside != 0)? (1LL * maxcomside * maxcomside) % M : -1;
+        // return (maxcomside != 0)? (1LL * maxcomside * maxcomside) % M : -1;
+        return maxcomside == 0 ? -1 : (1LL * maxcomside * maxcomside) % M;
     }
 };
