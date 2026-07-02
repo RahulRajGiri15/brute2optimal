@@ -1,26 +1,46 @@
 class Solution {
 public:
+    int dx[4] = {1, -1, 0, 0};
+    int dy[4] = {0, 0, 1, -1};
+
     bool findSafeWalk(vector<vector<int>>& grid, int health) {
-        int m = grid.size(), n = grid[0].size();
-        deque<pair<int,int>> dq;
-        vector<vector<int>> dist(m, vector<int>(n, INT_MAX));
-        dist[0][0] = grid[0][0];
-        dq.push_front({0, 0});
-        int dx[4] = {1, -1, 0, 0};
-        int dy[4] = {0, 0, 1, -1};
-        while (!dq.empty()) {
-            auto [x, y] = dq.front();
-            dq.pop_front();
-            for (int k = 0; k < 4; k++) {
-                int nx = x + dx[k], ny = y + dy[k];
-                if (nx < 0 || ny < 0 || nx >= m || ny >= n) continue;
-                int w = grid[nx][ny];
-                if (dist[x][y] + w < dist[nx][ny]) {
-                    dist[nx][ny] = dist[x][y] + w;
-                    w == 0 ? dq.push_front({nx, ny}) : dq.push_back({nx, ny});
-                }
+        int n = grid.size();
+        int m = grid[0].size();
+
+        vector<vector<int>> maxHealth(n, vector<int>(m, -1));
+        queue<pair<int, pair<int, int>>> q;
+
+        int initialH = health - grid[0][0];
+        if (initialH <= 0) return false;
+
+        q.push({initialH, {0, 0}});
+        maxHealth[0][0] = initialH;
+
+        while (!q.empty()) {
+            auto [currH, pos] = q.front();
+            q.pop();
+
+            int r = pos.first;
+            int c = pos.second;
+
+            if (r == n - 1 && c == m - 1) return true;
+
+            for (int d = 0; d < 4; d++) {
+                int nr = r + dx[d];
+                int nc = c + dy[d];
+
+                if (nr < 0 || nc < 0 || nr >= n || nc >= m) continue;
+
+                int remH = currH - grid[nr][nc];
+
+                if (remH <= 0) continue;
+                if (remH <= maxHealth[nr][nc]) continue;
+
+                maxHealth[nr][nc] = remH;
+                q.push({remH, {nr, nc}});
             }
         }
-        return dist[m - 1][n - 1] < health;
+
+        return false;
     }
 };
